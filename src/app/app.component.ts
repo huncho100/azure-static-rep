@@ -21,10 +21,16 @@ export class AppComponent {
   sendMessage() {
     if (this.name.trim()) {
       const params = new HttpParams().set('name', this.name);
-      this.http.get('/api/message', { params })
-        .subscribe((resp: any) => {
-          this.message = resp.text;
-        });
+      this.http.get<any>('/api/message', { params })
+        .subscribe(
+          (resp: any) => {
+            this.message = resp.message; // Assuming the response now contains 'message' field
+          },
+          (error) => {
+            console.error('Error:', error);
+            this.message = 'Failed to retrieve message.';
+          }
+        );
     }
   }
 }
