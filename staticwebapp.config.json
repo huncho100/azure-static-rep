@@ -1,5 +1,54 @@
 {
     "navigationFallback": {
         "rewrite": "/index.html"
+    },
+
+    "routes": [
+  
+     {
+  
+       "route": "/*",
+  
+       "allowedRoles": ["authenticated"]
+  
+     }
+  
+    ],
+  
+    "responseOverrides": {
+  
+     "401": {
+  
+       "statusCode": 302,
+  
+       "redirect": "/.auth/login/aad"
+  
+     }
+  
+    },
+  
+    "auth": {
+  
+     "identityProviders": {
+  
+       "azureActiveDirectory": {
+  
+         "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+  
+         "registration": {
+  
+           "openIdIssuer": "https://login.microsoftonline.com/c02b445f-e03d-48af-accc-37727de9e7f5",
+  
+           "clientIdSettingName": "AZURE_CLIENT_ID",
+  
+           "clientSecretSettingName": "AZURE_CLIENT_SECRET"
+  
+         }
+  
+       }
+  
+     }
+  
     }
+  
 }
