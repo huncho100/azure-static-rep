@@ -2,11 +2,11 @@
   "routes": [
     {
       "route": "/",
-      "allowedRoles": ["anonymous"]
+      "allowedRoles": ["authenticated"]
     },
     {
       "route": "/anonymous/*",
-      "allowedRoles": ["anonymous"]
+      "allowedRoles": ["authenticated"]
     },
     {
       "route": "/authenticated/*",
@@ -14,7 +14,7 @@
     },
     {
       "route": "/custom/*",
-      "allowedRoles": ["custom"]
+      "allowedRoles": ["authenticated"]
     }
   ],
   "auth": {
