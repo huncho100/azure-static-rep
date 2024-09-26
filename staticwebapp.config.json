@@ -41,8 +41,6 @@
         }
       }
     }
-  },
-  "globalHeaders": {
-    "Access-Control-Allow-Origin": "*"
   }
+  
 }
