@@ -11,6 +11,7 @@
      "redirect": "/.auth/login/aad"
    }
   },
+
   "auth": {
    "identityProviders": {
      "azureActiveDirectory": {
@@ -22,3 +23,4 @@
      }
    }
   }
+}
