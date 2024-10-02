@@ -1,26 +1,48 @@
 {
   "routes": [
-   {
-     "route": "/*",
-     "allowedRoles": ["authenticated"]
-   }
+    {
+      "route": "/",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/anonymous/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/authenticated/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/custom/*",
+      "allowedRoles": ["authenticated"]
+    }
   ],
-  "responseOverrides": {
-   "401": {
-     "statusCode": 302,
-     "redirect": "/.auth/login/aad"
-   }
-  },
 
-  "auth": {
-   "identityProviders": {
-     "azureActiveDirectory": {
-       "registration": {
-         "openIdIssuer": "https://login.microsoftonline.com/da8c5126-eb7b-47e1-a8af-b5260cb260a6",
-         "clientIdSettingName": "AZURE_CLIENT_ID",
-         "clientSecretSettingName": "AZURE_CLIENT_SECRET"
+  "responseOverrides": {
+     "401": {
+         "statusCode": 302,
+         "redirect": "/.auth/login/aad"
        }
-     }
-   }
+      },
+  
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "registration": {
+          "openIdIssuer": "https://login.microsoftonline.com/da8c5126-eb7b-47e1-a8af-b5260cb260a6",
+          "clientIdSettingName": "AZURE_CLIENT_ID",
+          "clientSecretSettingName": "AZURE_CLIENT_SECRET"
+        },
+        "login": {
+          "loginParameters": [
+            "response_type=id_token",
+            "scope=openid profile"
+          ]
+        }
+      }
+    }
+  },
+  "globalHeaders": {
+    "Access-Control-Allow-Origin": "*"
   }
 }
